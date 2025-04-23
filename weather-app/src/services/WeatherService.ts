@@ -32,9 +32,10 @@ export const getWeatherData = async (city: string): Promise<WeatherData> => {
 
     cacheWeatherData(city, weatherData);
     return weatherData;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const status = error.response?.status;
+  } catch (error: any) {
+    if (error?.response) {
+      const status = error.response.status;
+
       if (status === 401) {
         throw new WeatherError("Invalid API key.");
       }
@@ -44,7 +45,7 @@ export const getWeatherData = async (city: string): Promise<WeatherData> => {
         );
       }
       throw new WeatherError(
-        error.response?.data?.message || "Failed to fetch weather data"
+        error.response.data?.message || "Failed to fetch weather data"
       );
     }
     throw new WeatherError("Unexpected error occurred");

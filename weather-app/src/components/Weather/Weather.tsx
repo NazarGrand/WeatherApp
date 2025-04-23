@@ -23,11 +23,9 @@ const Weather: FunctionComponent = () => {
     try {
       const data = await getWeatherData(city);
       setWeather(data);
-    } catch (err) {
+    } catch (err: any) {
       setError(
-        err instanceof WeatherError
-          ? err.message
-          : "An unexpected error occurred"
+        err && err.message ? err.message : "An unexpected error occurred"
       );
       setWeather(null);
     } finally {
@@ -45,7 +43,12 @@ const Weather: FunctionComponent = () => {
       />
 
       {error && (
-        <Alert icon={<IconAlertCircle size={16} />} title="Error" color="red">
+        <Alert
+          icon={<IconAlertCircle size={16} />}
+          title="Error"
+          color="red"
+          data-testid="error-message"
+        >
           {error}
         </Alert>
       )}

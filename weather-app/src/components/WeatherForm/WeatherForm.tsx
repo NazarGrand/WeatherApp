@@ -23,6 +23,7 @@ const WeatherForm: FunctionComponent<WeatherFormProps> = ({
           value={city}
           onChange={(e) => setCity(e.target.value)}
           style={{ flex: 1 }}
+          data-testid="city-input"
         />
         <Center>
           <Button
@@ -30,6 +31,7 @@ const WeatherForm: FunctionComponent<WeatherFormProps> = ({
             type="submit"
             loading={loading}
             leftSection={<IconSearch size={20} />}
+            data-testid="search-button"
           >
             Search
           </Button>

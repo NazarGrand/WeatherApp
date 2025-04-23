@@ -8,7 +8,7 @@ interface WeatherCardProps {
 
 const WeatherCard: FunctionComponent<WeatherCardProps> = ({ weather }) => {
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder data-testid="weather-card">
       <Stack align="center" gap="xs">
         <Text size="xl" w={500}>
           {weather.city}
@@ -19,11 +19,17 @@ const WeatherCard: FunctionComponent<WeatherCardProps> = ({ weather }) => {
           width={100}
           height={100}
         />
-        <Text size="lg">{weather.temperature}°C</Text>
-        <Text size="md" style={{ textTransform: "capitalize" }}>
+        <Text size="lg" data-testid="temperature">
+          {weather.temperature}°C
+        </Text>
+        <Text
+          size="md"
+          style={{ textTransform: "capitalize" }}
+          data-testid="description"
+        >
           {weather.description}
         </Text>
-        <Text size="sm" color="dimmed">
+        <Text size="sm" color="dimmed" data-testid="last-updated">
           Last updated: {weather.lastUpdated}
         </Text>
       </Stack>
