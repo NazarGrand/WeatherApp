@@ -1,6 +1,7 @@
 import axios from "axios";
 import { WeatherData, CachedWeatherData } from "../common/interfaces/Weather";
 import { constants } from "../env-constants";
+import { WeatherError } from "../common/errors/WeatherError";
 
 const API_KEY = constants.WEATHER_API_KEY || "";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
@@ -33,11 +34,20 @@ export const getWeatherData = async (city: string): Promise<WeatherData> => {
     return weatherData;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data.message || "Failed to fetch weather data"
+      const status = error.response?.status;
+      if (status === 401) {
+        throw new WeatherError("Invalid API key.");
+      }
+      if (status && status >= 500) {
+        throw new WeatherError(
+          "Weather service is currently unavailable. Please try again later."
+        );
+      }
+      throw new WeatherError(
+        error.response?.data?.message || "Failed to fetch weather data"
       );
     }
-    throw error;
+    throw new WeatherError("Unexpected error occurred");
   }
 };
 

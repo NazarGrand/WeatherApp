@@ -6,10 +6,6 @@ export interface WeatherData {
   lastUpdated: string;
 }
 
-export interface WeatherError {
-  message: string;
-}
-
 export interface CachedWeatherData extends WeatherData {
   timestamp: number;
 }
