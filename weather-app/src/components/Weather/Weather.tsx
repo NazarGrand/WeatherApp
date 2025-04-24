@@ -3,7 +3,6 @@ import { Alert, Stack } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { getWeatherData } from "../../services/WeatherService";
 import { WeatherData } from "../../common/interfaces/Weather";
-import { WeatherError } from "../../common/errors/WeatherError";
 import WeatherForm from "../WeatherForm/WeatherForm";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
