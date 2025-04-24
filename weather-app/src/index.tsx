@@ -5,14 +5,17 @@ import App from "./App";
 import { MantineProvider } from "@mantine/core";
 import { theme } from "./theming/theme";
 import "@mantine/core/styles.css";
+import { HashRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <MantineProvider theme={theme}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </MantineProvider>
+  <React.StrictMode>
+    <HashRouter>
+      <MantineProvider theme={theme}>
+        <App />
+      </MantineProvider>
+    </HashRouter>
+  </React.StrictMode>
 );
