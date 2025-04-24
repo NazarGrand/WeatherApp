@@ -1,8 +1,12 @@
-import React from "react";
 import "./App.scss";
+import Weather from "./components/Weather/Weather";
 
 function App() {
-  return <div className="App">Weather app</div>;
+  return (
+    <div className="App">
+      <Weather />
+    </div>
+  );
 }
 
 export default App;
