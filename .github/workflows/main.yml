@@ -14,9 +14,11 @@ jobs:
 
     - name: Install dependencies
       run: yarn
+      working-directory: weather-app
 
     - name: Build the app
       run: yarn run build
+      working-directory: weather-app
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
