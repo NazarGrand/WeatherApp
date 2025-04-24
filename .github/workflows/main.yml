@@ -1,5 +1,7 @@
 name: Build and Release
 
+permissions:
+  contents: write
 # Controls when the workflow will run
 on:
   push:
@@ -25,3 +27,4 @@ jobs:
       with:
           branch: gh-pages
           folder: weather-app/build
+          token: ${{ secrets.GITHUB_TOKEN }}
